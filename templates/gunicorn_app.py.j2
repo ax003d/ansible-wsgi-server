@@ -1,0 +1,13 @@
+CONFIG = {
+  'pythonpath': '{{ wsgi_pythonpath }}',
+  'user': '{{ wsgi_run_as.user }}',
+  'group': '{{ wsgi_run_as.group }}',
+  'loglevel': '{{ wsgi_gunicorn_loglevel }}',
+  'working_dir': '{{ wsgi_working_dir }}',
+  'args': {
+    '--bind=unix:{{ wsgi_sock_path }}',
+    '--workers={{ wsgi_worker_count }}',
+    '--timeout={{ wsgi_timeout_sec }}',
+    '{{ wsgi_app_module }}',
+  }
+}
