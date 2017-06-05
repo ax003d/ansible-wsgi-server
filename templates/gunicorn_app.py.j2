@@ -8,6 +8,8 @@ CONFIG = {
     '--bind=unix:{{ wsgi_sock_path }}',
     '--workers={{ wsgi_worker_count }}',
     '--timeout={{ wsgi_timeout_sec }}',
+    '--access-logfile={{ wsgi_log.access }}',
+    '--error-logfile={{ wsgi_log.error }}',
     '{{ wsgi_app_module }}',
   }
 }
