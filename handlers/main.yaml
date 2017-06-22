@@ -2,5 +2,8 @@
 
 - name: restart gunicorn
   listen: "python code updated"
-  service: name=gunicorn state=reloaded
+  service:
+    name: gunicorn
+    use: service
+    state: reloaded
   become: true

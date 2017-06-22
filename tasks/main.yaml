@@ -23,5 +23,9 @@
     - restart gunicorn
 
 - name: enable gunicorn
-  service: name=gunicorn state=restarted enabled=yes
+  service:
+    name: gunicorn
+    state: restarted
+    enabled: yes
+    use: service
   become: true
