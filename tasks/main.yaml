@@ -1,20 +1,20 @@
 ---
 
-- name: create dir for gunicorn's socket file
+- name: WSGI server | Make sure directory for Gunicorn socket file exists
   file: state=directory path={{ wsgi_sock_path|dirname }}
   become: true
 
-- name: install gunicorn
+- name: WSGI server | Install Gunicorn
   apt: name=gunicorn state=installed
   become: true
 
-- name: ensure gunicorn config root directory exists
+- name: WSGI server | Make sure directory for Gunicorn config exists
   file:
     path=/etc/gunicorn.d
     state=directory
   become: true
 
-- name: configure gunicorn
+- name: WSGI server | Push Gunicorn configuration
   template:
     src=templates/gunicorn_app.py.j2
     dest=/etc/gunicorn.d/{{ wsgi_conf_name }}.conf
@@ -22,7 +22,7 @@
   notify:
     - restart gunicorn
 
-- name: enable gunicorn
+- name: WSGI server | Enable Gunicorn service
   service:
     name: gunicorn
     state: restarted
