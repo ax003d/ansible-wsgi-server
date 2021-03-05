@@ -5,7 +5,7 @@
   become: true
 
 - name: WSGI server | Install Gunicorn
-  apt: name=gunicorn state=installed
+  apt: name=gunicorn state=present
   become: true
 
 - name: WSGI server | Make sure directory for Gunicorn config exists
